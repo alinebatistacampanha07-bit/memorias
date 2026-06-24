@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✨ nosso cantinho ✨</title>
+  <!-- Google Fonts para uma vibe mais fofa -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset e base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #ffe9f4 0%, #ffd9e8 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Quicksand', sans-serif;
+      padding: 2rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      width: 100%;
+      background: rgba(255, 245, 248, 0.7);
+      backdrop-filter: blur(6px);
+      border-radius: 60px 60px 40px 40px;
+      box-shadow: 0 25px 40px rgba(255, 120, 160, 0.2),
+                  inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+      padding: 2.5rem 2rem 3rem;
+      transition: 0.3s;
+    }
+
+    /* cabeçalho fofo */
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .header h1 {
+      font-size: 3.2rem;
+      font-weight: 600;
+      color: #a63c5e;
+      text-shadow: 4px 4px 0 #ffb6d9, 0 6px 20px rgba(255, 100, 150, 0.3);
+      letter-spacing: 1px;
+      word-break: break-word;
+    }
+
+    .header h1 span {
+      display: inline-block;
+      transform: rotate(-2deg);
+    }
+
+    .header .sub {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: #b35a7a;
+      background: rgba(255, 220, 235, 0.7);
+      display: inline-block;
+      padding: 0.4rem 2rem;
+      border-radius: 60px;
+      backdrop-filter: blur(2px);
+      box-shadow: 0 4px 12px rgba(255, 150, 200, 0.2);
+      margin-top: 0.3rem;
+      border: 1px solid #ffd9e8;
+    }
+
+    .header .heart {
+      font-size: 2rem;
+      animation: pulse 1.8s infinite;
+      display: inline-block;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    /* grid de fotos — vibe "girl" */
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.8rem;
+      justify-items: center;
+      margin-top: 0.5rem;
+    }
+
+    /* cartão de cada foto */
+    .card {
+      width: 100%;
+      max-width: 260px;
+      background: rgba(255, 240, 245, 0.6);
+      backdrop-filter: blur(2px);
+      border-radius: 40px 40px 30px 30px;
+      padding: 1rem 1rem 1.2rem;
+      box-shadow: 0 12px 28px rgba(200, 80, 130, 0.15),
+                  inset 0 0 0 1px #fff6fa;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: 1px solid rgba(255, 200, 220, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 20px 35px rgba(210, 90, 140, 0.25);
+      background: rgba(255, 235, 242, 0.8);
+      border-color: #ffb0cc;
+    }
+
+    /* moldura da imagem */
+    .foto-wrapper {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 30px 30px 20px 20px;
+      overflow: hidden;
+      background: #ffdce8;
+      box-shadow: inset 0 0 0 3px white, 0 8px 18px rgba(180, 70, 110, 0.2);
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .foto-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: 0.4s;
+    }
+
+    .card:hover .foto-wrapper img {
+      transform: scale(1.02);
+    }
+
+    /* Título da foto (sempre visível) */
+    .nome-foto {
+      margin: 0.8rem 0 0.2rem;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #802f4e;
+      letter-spacing: 0.3px;
+      background: rgba(255, 215, 230, 0.4);
+      padding: 0.1rem 0.8rem;
+      border-radius: 40px;
+      backdrop-filter: blur(2px);
+      display: inline-block;
+      border: 1px solid #ffb7d0;
+    }
+
+    /* descrição (escondida por padrão) */
+    .descricao {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: #5e3a47;
+      background: rgba(255, 225, 238, 0.7);
+      backdrop-filter: blur(4px);
+      padding: 0.7rem 1rem;
+      margin-top: 0.6rem;
+      border-radius: 50px;
+      width: 100%;
+      border: 1px solid #ffb7d0;
+      box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.6);
+      line-height: 1.4;
+      display: none;  /* inicialmente oculta */
+      transition: 0.2s;
+      word-break: break-word;
+    }
+
+    /* quando o card tiver a classe 'mostrar-desc', a descrição aparece */
+    .card.mostrar-desc .descricao {
+      display: block;
+    }
+
+    /* coraçãozinho decorativo no canto */
+    .card::after {
+      content: "🌸";
+      position: relative;
+      display: block;
+      font-size: 1.2rem;
+      margin-top: 0.3rem;
+      opacity: 0.7;
+      letter-spacing: 2px;
+    }
+
+    /* responsividade e ajustes */
+    @media (max-width: 600px) {
+      .container {
+        padding: 1.5rem 1rem;
+        border-radius: 40px;
+      }
+      .header h1 {
+        font-size: 2.5rem;
+      }
+      .galeria {
+        gap: 1.2rem;
+      }
+      .card {
+        max-width: 200px;
+        padding: 0.8rem;
+      }
+      .nome-foto {
+        font-size: 1rem;
+      }
+    }
+
+    /* rodapé fofo */
+    .footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 1rem;
+      color: #b05a78;
+      font-weight: 300;
+      letter-spacing: 1px;
+      border-top: 1px dashed #ffb6d0;
+      padding-top: 1.8rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .footer span {
+      background: rgba(255, 220, 235, 0.5);
+      padding: 0.2rem 1.2rem;
+      border-radius: 50px;
+      backdrop-filter: blur(2px);
+      border: 1px solid #ffc1d6;
+    }
+
+    /* detalhe bônus: estrelinhas */
+    .brilho {
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff8eb5" width="18px" height="18px"><path d="M12 2l2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5L12 2z"/></svg>');
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      background-size: contain;
+      opacity: 0.5;
+      margin: 0 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- cabeçalho -->
+    <div class="header">
+      <h1>
+        <span>💗</span> Nossas Memórias <span>💗</span>
+      </h1>
+      <div class="sub">
+        <span class="heart">🌸</span>  clique nas fotos para ver a descrição  <span class="heart">🌸</span>
+      </div>
+    </div>
+
+    <!-- Galeria de fotos -->
+    <div class="galeria" id="galeria">
+      <!-- Card 1 -->
+      <div class="card" data-desc="Nosso primeiro passeio no parque, o dia mais ensolarado 🌞">
+        <div class="foto-wrapper">
+          <img src= "https://i.postimg.cc/sfq4HhTv/Whats-App-Image-2026-06-24-at-18-05-33.jpg"
+               alt="Foto 1 - Segunda vez que saimos" />
+        </div>
+        <div class="nome-foto">Segunda Vez Que Saímos</div>
+        <div class="descricao">A segunda vez que saímos depois dele conhecer meu pai... e eu ainda lembro do nervosismo dele. Confesso que achei a coisa mais fofa</div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card" data-desc="Jantarzinho à luz de velas, a gente e o fondue 🍫">
+        <div class="foto-wrapper">
+        <img src="https://i.postimg.cc/gcSTzjNW/casa-dele.jpg"
+               alt="Foto 2 - Casa dele" />
+        </div>
+        <div class="nome-foto">Domingo Juntos</div>
+        <div class="descricao">Lembro daquele domingo na casa dele. Estávamos abraçados na cozinha quando ele disse que eu estava muito linda. Pode parecer simples, mas meu coração guardou esse momento com todo carinho do mundo</div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card" data-desc="Praia, pé na areia e um pôr do sol cor de rosa 🌅">
+        <div class="foto-wrapper">
+          <img src="https://i.postimg.cc/053Sn1cF/saida.jpg"
+               alt="Foto 3 - Hercílio Luz" />
+        </div>
+        <div class="nome-foto">Ponte Hercílio Luz</div>
+        <div class="descricao">Naquele domingo, decidimos ir até a Ponte Hercílio Luz. As luzes da ponte brilhavam em um rosa choque lindo, o céu estava estrelado e, de repente, ele me pegou nos braços. Fiquei morrendo de vergonha, mas adorei cada segundo. Naquele momento, me senti vivendo dentro da música da Lana Del Rey,"Video Games"</div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card" data-desc="Natal juntos, a foto mais fofa com nosso gato 🎄🐱">
+        <div class="foto-wrapper">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23f5d3e0'/%3E%3Ccircle cx='100' cy='100' r='55' fill='%23ff90b0'/%3E%3Ccircle cx='75' cy='80' r='12' fill='%23ffe4ed'/%3E%3Ccircle cx='125' cy='80' r='12' fill='%23ffe4ed'/%3E%3Cpath d='M75 115 Q100 135 125 115' stroke='%23ff4d7a' stroke-width='7' fill='none'/%3E%3Cpolygon points='100,40 110,65 135,65 115,80 125,105 100,90 75,105 85,80 65,65 90,65' fill='%23ffd966'/%3E%3C/svg%3E"
+               alt="Foto 4 - natal" />
+        </div>
+        <div class="nome-foto">🎄 natal</div>
+        <div class="descricao">Natal juntos, a foto mais fofa com nosso gato 🎄🐱</div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card" data-desc="Aquele dia de chuva, ficamos vendo filmes e comendo pipoca 🍿">
+        <div class="foto-wrapper">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23fad4e0'/%3E%3Crect x='30' y='50' width='140' height='100' rx='15' fill='%23fa8aa9'/%3E%3Ccircle cx='80' cy='100' r='18' fill='%23ffc2d1'/%3E%3Ccircle cx='120' cy='100' r='18' fill='%23ffc2d1'/%3E%3Crect x='50' y='40' width='20' height='15' fill='%23ffb0c3' rx='5'/%3E%3Crect x='130' y='40' width='20' height='15' fill='%23ffb0c3' rx='5'/%3E%3C/svg%3E"
+               alt="Foto 5 - filme" />
+        </div>
+        <div class="nome-foto">🎬 filme</div>
+        <div class="descricao">Aquele dia de chuva, ficamos vendo filmes e comendo pipoca 🍿</div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="card" data-desc="Aniversário surpresa, bolo de morango e muitos beijos 🍓🎂">
+        <div class="foto-wrapper">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23fcdae7'/%3E%3Ccircle cx='100' cy='90' r='45' fill='%23ff8faf'/%3E%3Ccircle cx='70' cy='80' r='8' fill='%23ffe6ef'/%3E%3Ccircle cx='130' cy='80' r='8' fill='%23ffe6ef'/%3E%3Crect x='80' y='125' width='40' height='30' fill='%23ff6f91' rx='10'/%3E%3Ccircle cx='100' cy='140' r='10' fill='%23ffd966'/%3E%3C/svg%3E"
+               alt="Foto 6 - aniversário" />
+        </div>
+        <div class="nome-foto">🎂 aniversário</div>
+        <div class="descricao">Aniversário surpresa, bolo de morango e muitos beijos 🍓🎂</div>
+      </div>
+    </div>
+
+    <!-- rodapé fofo -->
+    <div class="footer">
+      <span>✨ feito com amor ✨</span>
+      <span>💕 clique e descubra 💕</span>
+      <span>🌸 nosso álbum 🌸</span>
+    </div>
+  </div>
+
+  <!-- JavaScript: clique para mostrar/esconder descrição -->
+  <script>
+    (function() {
+      const cards = document.querySelectorAll('.card');
+
+      cards.forEach(card => {
+        card.addEventListener('click', function(e) {
+          // Previne que o clique na descrição propague (mas não é necessário)
+          // Alterna a classe 'mostrar-desc' no card clicado
+          this.classList.toggle('mostrar-desc');
+        });
+      });
+
+      // Opcional: se quiser fechar as outras descrições ao abrir uma nova,
+      // mas o design pede "quando clicar na foto dá pra ver a descrição"
+      // e a interação é toggle por card, mantendo independência.
+      // Caso queira que apenas uma seja aberta por vez, descomente o bloco abaixo:
+      /*
+      cards.forEach(card => {
+        card.addEventListener('click', function() {
+          const isOpen = this.classList.contains('mostrar-desc');
+          // fecha todos os outros
+          cards.forEach(c => c.classList.remove('mostrar-desc'));
+          // se estava fechado, abre (toggle)
+          if (!isOpen) {
+            this.classList.add('mostrar-desc');
+          }
+        });
+      });
+      */
+    })();
+  </script>
+</body>
+</html>
